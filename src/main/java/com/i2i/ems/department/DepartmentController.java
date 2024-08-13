@@ -3,15 +3,16 @@ package com.i2i.ems.department;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import com.i2i.ems.employee.EmployeeDto;
-import com.i2i.ems.employee.EmployeeMapper;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import com.i2i.ems.exceptions.EmployeeException;
-import com.i2i.ems.model.Department;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.i2i.ems.employee.EmployeeDto;
+import com.i2i.ems.employee.EmployeeMapper;
+import com.i2i.ems.exceptions.EmployeeException;
+import com.i2i.ems.model.Department;
 
 /**
  * <p>
@@ -112,13 +113,16 @@ public class DepartmentController {
      * @param id The ID of the department to be deleted.
      * @return  {@link ResponseEntity<DepartmentDto>}
      */
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<HttpStatus.Series> deleteDepartment(@PathVariable(name = "id") Long id) {
         Department department = null;
-        department = departmentService.getDepartmentById(id);
+        department = departmentService.getDepartmentWithEmployees(id);
         if (null == department) {
             logger.info("Department with ID : {} not found !", id);
             throw new EmployeeException("Department not found with ID : " + id );
+        }
+        if (department.getEmployees().size() != 0) {
+            throw new EmployeeException("Department has associated Employees ! Can't delete.");
         }
         department.setDeleted(true);
         departmentService.addOrUpdateDepartment(department);
@@ -144,7 +148,6 @@ public class DepartmentController {
         }
         List<EmployeeDto> employees = department.getEmployees().stream()
                 .map(employee -> EmployeeMapper.toEmployeeDto(employee)).collect(Collectors.toList());
-
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 }

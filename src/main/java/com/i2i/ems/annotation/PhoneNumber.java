@@ -12,13 +12,14 @@ import static java.lang.annotation.ElementType.FIELD;
 /**
  * <p>
  * Custom validation annotation for phone number
+ * Checks whether the given phone number is exactly 10 digits long
  * </p>
  */
 @Target( { FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = PhoneNumberValidator.class)
 public @interface PhoneNumber {
-    public String message() default "Phone number must be 10 digits long!";
-    public Class<?>[] groups() default {};
-    public Class<? extends Payload>[] payload() default {};
+    String message() default "";
+    Class<?>[] groups() default {};
+    Class<? extends Payload>[] payload() default {};
 }

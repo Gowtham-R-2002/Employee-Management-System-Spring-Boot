@@ -2,13 +2,13 @@ package com.i2i.ems.department;
 
 import java.util.List;
 
-
-import com.i2i.ems.exceptions.EmployeeException;
-import com.i2i.ems.model.Department;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.i2i.ems.exceptions.EmployeeException;
+import com.i2i.ems.model.Department;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {

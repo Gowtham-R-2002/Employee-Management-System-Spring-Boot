@@ -3,7 +3,6 @@ package com.i2i.ems.certificate;
 import java.util.List;
 import java.util.Set;
 
-import com.i2i.ems.exceptions.EmployeeException;
 import com.i2i.ems.model.Certificate;
 import com.i2i.ems.model.Employee;
 

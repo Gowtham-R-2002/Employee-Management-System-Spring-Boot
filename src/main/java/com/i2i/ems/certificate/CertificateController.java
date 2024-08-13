@@ -3,14 +3,8 @@ package com.i2i.ems.certificate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.i2i.ems.employee.EmployeeDto;
-import com.i2i.ems.employee.EmployeeMapper;
-import com.i2i.ems.exceptions.EmployeeException;
-import com.i2i.ems.model.Certificate;
-import com.i2i.ems.model.Employee;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,6 +17,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.i2i.ems.employee.EmployeeDto;
+import com.i2i.ems.employee.EmployeeMapper;
+import com.i2i.ems.exceptions.EmployeeException;
+import com.i2i.ems.model.Certificate;
+import com.i2i.ems.model.Employee;
 
 /** 
  * <p> Responsible for providing endpoints for 
@@ -95,7 +95,7 @@ public class CertificateController {
      * @param id  The ID of the certificate to be deleted.
      * @return  {@link ResponseEntity<CertificateDto>}
      */
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<HttpStatus.Series> deleteCertificate(@PathVariable(name = "id") Long id) {
         if (null == certificateService.getCertificate(id)){
             logger.info("Certificate with ID : {} not found !", id);

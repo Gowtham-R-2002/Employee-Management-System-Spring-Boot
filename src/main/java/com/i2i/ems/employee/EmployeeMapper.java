@@ -1,14 +1,22 @@
 package com.i2i.ems.employee;
 
+import java.util.HashSet;
+import java.util.stream.Collectors;
+
 import com.i2i.ems.certificate.CertificateMapper;
 import com.i2i.ems.model.Address;
 import com.i2i.ems.model.Department;
 import com.i2i.ems.model.Employee;
 import com.i2i.ems.util.DateUtil;
 
-import java.util.HashSet;
-import java.util.stream.Collectors;
-
+/**
+ * <p>
+ * Class for converting employee entity to DTO and vice versa.
+ * </p>
+ *
+ * @author   Gowtham R
+ * @version  1.4
+ */
 public class EmployeeMapper {
 
     public static Employee toEmployee(EmployeeDto employeeDto, Department department) {

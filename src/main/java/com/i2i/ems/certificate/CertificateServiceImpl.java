@@ -3,16 +3,17 @@ package com.i2i.ems.certificate;
 import java.util.List;
 import java.util.Set;
 
-import com.i2i.ems.employee.EmployeeService;
-import com.i2i.ems.exceptions.EmployeeException;
-import com.i2i.ems.model.Certificate;
-import com.i2i.ems.model.Employee;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import com.i2i.ems.employee.EmployeeService;
+import com.i2i.ems.exceptions.EmployeeException;
+import com.i2i.ems.model.Certificate;
+import com.i2i.ems.model.Employee;
 
 @Service
 public class CertificateServiceImpl implements CertificateService {
@@ -52,6 +53,7 @@ public class CertificateServiceImpl implements CertificateService {
     public List<Certificate> getCertificates() {
         return certificateDao.findByIsDeletedFalse();
     }
+
 
     @Override
     public Employee addEmployee(Employee employee, Certificate certificate) {

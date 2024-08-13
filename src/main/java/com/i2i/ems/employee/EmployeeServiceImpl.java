@@ -2,8 +2,9 @@ package com.i2i.ems.employee;
 
 import java.util.List;
 
-import com.i2i.ems.model.Employee;
 import org.springframework.stereotype.Service;
+
+import com.i2i.ems.model.Employee;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {

@@ -2,12 +2,12 @@ package com.i2i.ems.department;
 
 import java.util.List;
 
-import com.i2i.ems.model.Department;
-import com.i2i.ems.model.Employee;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import com.i2i.ems.model.Department;
 
 @Repository
 public interface DepartmentDao extends CrudRepository<Department, Long> {

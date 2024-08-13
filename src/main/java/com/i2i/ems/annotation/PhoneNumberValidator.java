@@ -18,11 +18,14 @@ public class PhoneNumberValidator implements ConstraintValidator<PhoneNumber, Lo
      * Validates the given phone number's length
      * </p>
      * @param phoneNumber  The phone number to be validated
-     * @param constraintValidatorContext The context of the constrainValidation
-     * @return true if valid else false
+     * @param constraintValidatorContext The context of the constraintValidation
+     * @return True if valid else false
      */
     @Override
     public boolean isValid(Long phoneNumber, ConstraintValidatorContext constraintValidatorContext) {
+        constraintValidatorContext.disableDefaultConstraintViolation();
+        constraintValidatorContext.buildConstraintViolationWithTemplate("Phone number must be 10 digits long tet!").addConstraintViolation();
         return 10 == phoneNumber.toString().length();
+
     }
 }

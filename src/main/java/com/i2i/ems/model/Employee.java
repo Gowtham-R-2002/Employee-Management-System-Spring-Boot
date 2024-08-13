@@ -41,19 +41,17 @@ public class Employee {
     @Column(name = "phone_number", unique = true)
     private long phoneNumber;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
     private Department department;
 
-    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "employee_certificates",
             joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "certificate_id"))
     private Set<Certificate> certificates;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
 

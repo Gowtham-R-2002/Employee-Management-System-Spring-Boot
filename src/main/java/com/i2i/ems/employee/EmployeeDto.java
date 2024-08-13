@@ -1,15 +1,31 @@
 package com.i2i.ems.employee;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.i2i.ems.annotation.PhoneNumber;
-import com.i2i.ems.certificate.CertificateDto;
-import jakarta.validation.constraints.*;
-import lombok.*;
-
 import java.time.LocalDate;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
+
+import com.i2i.ems.annotation.PhoneNumber;
+import com.i2i.ems.certificate.CertificateDto;
+
+/**
+ * <p>
+ *     Class used for storing and getting data as DTO for employee.
+ *     Contains only necessary fields that are needed
+ *     to be displayed and received from the user.
+ * </p>
+ *
+ * @author  Gowtham R
+ * @version 1.4
+ */
 @AllArgsConstructor
 @Builder
 @Getter

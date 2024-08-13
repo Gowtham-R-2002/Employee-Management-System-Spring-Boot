@@ -3,15 +3,9 @@ package com.i2i.ems.employee;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.i2i.ems.exceptions.EmployeeException;
 import jakarta.validation.Valid;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-
-import com.i2i.ems.certificate.CertificateService;
-import com.i2i.ems.department.DepartmentService;
-import com.i2i.ems.model.Department;
-import com.i2i.ems.model.Employee;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,6 +18,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.i2i.ems.certificate.CertificateService;
+import com.i2i.ems.department.DepartmentService;
+import com.i2i.ems.exceptions.EmployeeException;
+import com.i2i.ems.model.Department;
+import com.i2i.ems.model.Employee;
 
 /**
  * <p>
@@ -131,7 +131,7 @@ public class EmployeeController {
      * @param id The ID of the employee to be deleted
      * @return  {@link ResponseEntity<EmployeeDto>}
      */
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<HttpStatus.Series> deleteEmployee(@PathVariable(name = "id") Long id) {
         Employee employee;
         employee = employeeService.getEmployeeById(id);
@@ -153,7 +153,7 @@ public class EmployeeController {
      *                       employee
      * @return {@link ResponseEntity<EmployeeDto>}
      */
-    @PostMapping("{id}/certificate/{certificateId}")
+    @PutMapping("{id}/certificate/{certificateId}")
     public ResponseEntity<EmployeeDto> addCertificateToEmployee(@PathVariable(name = "id") Long id,
                                                                 @PathVariable(name = "certificateId") Long certificateId){
         if (null == employeeService.getEmployeeById(id)){
