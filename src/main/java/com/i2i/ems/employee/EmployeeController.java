@@ -167,6 +167,4 @@ public class EmployeeController {
         Employee updatedEmployee = certificateService.addEmployee(employeeService.getEmployeeById(id),certificateService.getCertificate(certificateId));
         return new ResponseEntity<>(EmployeeMapper.toEmployeeDto(updatedEmployee), HttpStatus.OK);
     }
-
-
 }

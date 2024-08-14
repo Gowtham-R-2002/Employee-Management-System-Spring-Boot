@@ -26,6 +26,5 @@ public class PhoneNumberValidator implements ConstraintValidator<PhoneNumber, Lo
         constraintValidatorContext.disableDefaultConstraintViolation();
         constraintValidatorContext.buildConstraintViolationWithTemplate("Phone number must be 10 digits long tet!").addConstraintViolation();
         return 10 == phoneNumber.toString().length();
-
     }
 }

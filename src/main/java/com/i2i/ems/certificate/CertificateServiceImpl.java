@@ -26,7 +26,6 @@ public class CertificateServiceImpl implements CertificateService {
         this.employeeService = employeeService;
     }
 
-
     @Override
     public Certificate addOrUpdateCertificate(Certificate certificate) {
         Certificate savedCertificate = null;
@@ -53,7 +52,6 @@ public class CertificateServiceImpl implements CertificateService {
     public List<Certificate> getCertificates() {
         return certificateDao.findByIsDeletedFalse();
     }
-
 
     @Override
     public Employee addEmployee(Employee employee, Certificate certificate) {
