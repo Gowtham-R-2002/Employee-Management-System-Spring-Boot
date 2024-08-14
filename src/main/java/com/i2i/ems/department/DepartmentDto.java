@@ -3,6 +3,7 @@ package com.i2i.ems.department;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,7 +32,7 @@ public class DepartmentDto {
 
     @JsonProperty
     @NonNull
-    @NotEmpty
+    @Pattern(regexp = "^[ A-Za-z]+$", message = "Test")
     @NotBlank(message = "Department name cannot be blank!")
     private String name;
 }

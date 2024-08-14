@@ -77,7 +77,6 @@ public class EmployeeController {
             logger.info("Department with ID : {} not found !", employeeDto.getDepartmentId());
             throw new EmployeeException("Department not found with ID : " +  employeeDto.getDepartmentId());
         }
-        System.out.println(employeeDto.getName());
         Employee employee = EmployeeMapper.toEmployee(employeeDto, department);
         Employee savedEmployee = employeeService.addOrUpdateEmployee(employee);
         return new ResponseEntity<>(EmployeeMapper.toEmployeeDto(savedEmployee), HttpStatus.CREATED);
