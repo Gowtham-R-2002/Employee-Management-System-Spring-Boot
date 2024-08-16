@@ -1,5 +1,6 @@
 package com.i2i.ems.exceptionHandler;
 
+import com.i2i.ems.exceptions.AssociationException;
 import com.i2i.ems.exceptions.EmployeeException;
 import jakarta.validation.constraints.Null;
 import lombok.Data;
@@ -41,6 +42,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ErrorResponse> handleDataIntegrityViolationException(DataIntegrityViolationException dataIntegrityViolationException) {
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CONFLICT.value(), dataIntegrityViolationException.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+    }
+
+    @ExceptionHandler(AssociationException.class)
+    public ResponseEntity<ErrorResponse> handleAssociationException(AssociationException associationException) {
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CONFLICT.value(), associationException.getMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
 }

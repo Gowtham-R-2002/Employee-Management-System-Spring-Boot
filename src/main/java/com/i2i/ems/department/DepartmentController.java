@@ -3,6 +3,8 @@ package com.i2i.ems.department;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.i2i.ems.exceptions.AssociationException;
+import jakarta.validation.Valid;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.http.HttpStatus;
@@ -77,7 +79,7 @@ public class DepartmentController {
      * @return {@link ResponseEntity<DepartmentDto>}
      */
     @PostMapping
-    public ResponseEntity<DepartmentDto> addDepartment(@RequestBody DepartmentDto departmentDto) {
+    public ResponseEntity<DepartmentDto> addDepartment(@Valid @RequestBody DepartmentDto departmentDto) {
         Department department = DepartmentMapper.toDepartment(departmentDto);
         Department savedDepartment = departmentService.addOrUpdateDepartment(department);
         logger.info("Department added success !");
@@ -92,7 +94,7 @@ public class DepartmentController {
      * @return  {@link ResponseEntity<DepartmentDto>}
      */
     @PutMapping
-    public ResponseEntity<DepartmentDto> updateDepartment(@RequestBody DepartmentDto departmentDto) {
+    public ResponseEntity<DepartmentDto> updateDepartment(@Valid @RequestBody DepartmentDto departmentDto) {
         Department department = null;
         department = departmentService.getDepartmentById(departmentDto.getId());
         if (null == department) {
@@ -114,7 +116,7 @@ public class DepartmentController {
      * @return  {@link ResponseEntity<DepartmentDto>}
      */
     @DeleteMapping("{id}")
-    public ResponseEntity<HttpStatus.Series> deleteDepartment(@PathVariable(name = "id") Long id) {
+    public ResponseEntity<HttpStatus.Series> deleteDepartment(@PathVariable(name = "id") Long id) throws AssociationException {
         Department department = null;
         department = departmentService.getDepartmentWithEmployees(id);
         if (null == department) {
@@ -122,7 +124,7 @@ public class DepartmentController {
             throw new EmployeeException("Department not found with ID : " + id );
         }
         if (department.getEmployees().size() != 0) {
-            throw new EmployeeException("Department has associated Employees ! Can't delete.");
+            throw new AssociationException("Department has associated Employees ! Can't delete.");
         }
         department.setDeleted(true);
         departmentService.addOrUpdateDepartment(department);

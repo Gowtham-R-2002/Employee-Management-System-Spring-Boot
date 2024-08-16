@@ -35,18 +35,18 @@ Configuration:
   Loggers:
 
     Root:
-      level: info
+      level: error
       AppenderRef:
         - ref: Console_Appender
 
     Logger:
       - name: com.i2i.ems
         additivity: false
-        level: info
+        level: error
         AppenderRef:
           - ref: Console_Appender
-            level: info
+            level: error
           - ref: File_Appender
             level: error
           - ref: RollingFile_Appender
-            level: info
+            level: error
