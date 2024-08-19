@@ -1,11 +1,9 @@
 package com.i2i.ems.employee;
 
-import com.i2i.ems.certificate.CertificateServiceImpl;
-import com.i2i.ems.department.DepartmentServiceImpl;
-import com.i2i.ems.model.Address;
-import com.i2i.ems.model.Certificate;
-import com.i2i.ems.model.Department;
-import com.i2i.ems.model.Employee;
+import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,12 +11,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDate;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+
+import com.i2i.ems.certificate.CertificateServiceImpl;
+import com.i2i.ems.department.DepartmentServiceImpl;
+import com.i2i.ems.model.Address;
+import com.i2i.ems.model.Certificate;
+import com.i2i.ems.model.Department;
+import com.i2i.ems.model.Employee;
 
 @ExtendWith(MockitoExtension.class)
 public class EmployeeServiceTest {
